@@ -1,0 +1,24 @@
+{
+  "name": "camel",
+  "version": "1.0.0",
+  "description": "camelCase lib",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ilchuk-Mihail/camel.git"
+  },
+  "keywords": [
+    "camelcase",
+    "case",
+    "camel-case"
+  ],
+  "author": "Michael Ilchuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ilchuk-Mihail/camel/issues"
+  },
+  "homepage": "https://github.com/Ilchuk-Mihail/camel#readme"
+}
