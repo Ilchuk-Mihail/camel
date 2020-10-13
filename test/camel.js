@@ -3,7 +3,7 @@
 const chai = require('chai')
 const { expect } = chai
 
-const camel = require('.')
+const camel = require('../')
 
 describe('camel lib', function () {
   describe('camel.isCamelCase', function () {

@@ -20,7 +20,7 @@
                 "mocha": true
             },
             "files": [
-                "index.test.js"
+                "test/*.js"
             ]
         }
     ]
