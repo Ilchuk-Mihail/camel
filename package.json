@@ -4,7 +4,8 @@
   "description": "camelCase lib",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha ./test",
+    "test": "mocha ./test",
+    "test:cov": "nyc mocha ./test",
     "lint": "eslint './*.js'"
   },
   "repository": {
