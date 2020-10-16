@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha ./test",
-    "test:cov": "nyc mocha ./test",
+    "test:cov": "nyc npm test",
     "lint": "eslint './*.js'"
   },
   "repository": {

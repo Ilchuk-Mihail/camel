@@ -1,5 +1,6 @@
 [![javascript style guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 ![camel ci](https://github.com/Ilchuk-Mihail/camel/workflows/camel%20ci/badge.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Ilchuk-Mihail/camel/badge.svg?branch=Ilchuk-Mihail-patch-3)](https://coveralls.io/github/Ilchuk-Mihail/camel?branch=Ilchuk-Mihail-patch-3)
 ![camel package](https://github.com/Ilchuk-Mihail/camel/workflows/camel%20package/badge.svg?branch=master)
 
 <p align="center">
@@ -8,3 +9,7 @@
 <h1 align="center">
   camelCase
 </h1>
+
+## Install
+
+## Usage
