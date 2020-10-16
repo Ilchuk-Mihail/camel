@@ -18,13 +18,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     
-    - name: Install npm dependencies
+    # Install npm dependencies
     - run: npm ci
 
-    - name: Run lint
+    # Run lint
     - run: npm run lint
 
-    - name: Run tests
+    # Run tests
     - run: npm run test:cov
 
     # Save coverage report in Coveralls
