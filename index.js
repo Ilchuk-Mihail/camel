@@ -1,7 +1,5 @@
 'use strict'
 
-const camelCaseRegex = new RegExp('^[a-z][A-Za-z]*$')
-
 module.exports = {
   /**
    * Validate if string is a camel case
@@ -9,7 +7,8 @@ module.exports = {
    * @return {boolean}      Boolean result
    */
   isCamelCase (value) {
-    return camelCaseRegex.test(value)
+    // prev version ^[a-z][A-Za-z]*$
+    return /^[a-z]+(?:[A-Z][a-z]+)*$/g.test(value)
   },
 
   /**
@@ -22,12 +21,20 @@ module.exports = {
       throw new TypeError('The type of `value` argument should a `string`')
     }
 
-    return value.replace(/^([A-Z])|[\s-_/.]+(\w)/g, function (match, p1, p2) {
-      if (p2) {
-        return p2.toUpperCase()
-      }
-      return p1.toLowerCase()
-    })
+    // return value.replace(/^([A-Z])|[\s-_/.]+(\w)/g, function (match, p1, p2) {
+    //   if (p2) {
+    //     return p2.toUpperCase()
+    //   }
+    //   return p1.toLowerCase()
+    // })
+
+    // regex with numbers - /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
+    const text = value
+      .match(/[A-Z]{2,}(?=[A-Z][a-z]*|\b)|[A-Z]?[a-z]*|[A-Z]/g)
+      .map(x => x.slice(0, 1).toUpperCase() + x.slice(1).toLowerCase())
+      .join('')
+    console.log(text)
+    return text.slice(0, 1).toLowerCase() + text.slice(1)
   },
 
   /**
