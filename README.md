@@ -12,16 +12,16 @@
 
 ## What is camelCase?
 
->Camel case is the practice of capitalizing the first letter of each word in a series and then removing spaces, numbers, underscores, hyphens, and other special characters. This leaves a concatenation of words that is combined into a single string with various letters capitalized throughout.
+>Camel case is the practice of capitalizing the first letter of each word in a series (excepting first word which starts with lower case letter) and then removing spaces, numbers, underscores, hyphens, and other special characters. This leaves a concatenation of words that is combined into a single string with various letters capitalized throughout.
 
 ## Basic camelCase rules:
 
-- The first letter is capitalized.
-- One or more letters in that word are also capitalized.
+- The first letter is in lowercase
+- Each next word should start with capitalized letter
 - The word does not end on a capitalized letter: camelCasE
 - No two capitalized letters shall follow directly each other: camelCAse
 - No number in that word at any place: CamelCase1more
-- No dot(.), under_score or dash (-) within the word, only letters: camel_Case
+- No dot(.), underscore (_) or dash (-) within the word, only letters: camel_Case
 - No ‘foreign’ letters in it like äöüß or accentuated like áéí. cämélCáße
 
 ## Installation
