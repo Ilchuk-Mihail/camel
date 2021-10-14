@@ -1,12 +1,10 @@
-'use strict'
+import chai from 'chai'
+import camel from './index'
 
-const chai = require('chai')
 const { expect } = chai
 
-const camel = require('../')
-
 describe('camel lib', function () {
-  describe('camel.isCamelCase', function () {
+  describe('isCamelCase', function () {
     it('should succeed - all strings are valid', function () {
       [
         'f',
@@ -35,22 +33,7 @@ describe('camel lib', function () {
     })
   })
 
-  describe('camel.camelize', function () {
-    it('should fail - wrong argument type', async function () {
-      [
-        Number(1),
-        Boolean(true),
-        new Array(1),
-        new Date()
-      ].forEach(arg => {
-        try {
-          camel.camelize(arg)
-        } catch (err) {
-          expect(err.message).to.equal('The type of `value` argument should a `string`')
-        }
-      })
-    })
-
+  describe('camelize', function () {
     it('should camelize all strings', function () {
       expect(camel.camelize('')).to.equal('')
       expect(camel.camelize(' ')).to.equal('')
@@ -74,12 +57,6 @@ describe('camel lib', function () {
       expect(camel.camelize('Foo ABBR')).to.equal('fooAbbr')
       expect(camel.camelize('foo Bar$')).to.equal('fooBar')
       expect(camel.camelize('foo-Bar#')).to.equal('fooBar')
-
-      // should keep numbers if preserveNumbers set
-      expect(camel.camelize('123', { preserveNumbers: true })).to.equal('123')
-      expect(camel.camelize('foo1_bar2', { preserveNumbers: true })).to.equal('foo1Bar2')
-      expect(camel.camelize('foo1', { preserveNumbers: true })).to.equal('foo1')
-      expect(camel.camelize('1Foo', { preserveNumbers: true })).to.equal('1Foo')
     })
 
     it('should camelize and keep numbers if preserveNumbers option set', function () {
@@ -90,7 +67,7 @@ describe('camel lib', function () {
     })
   })
 
-  describe('camel.decamelize', function () {
+  describe('decamelize', function () {
     it('should decamelize all strings', function () {
       expect(camel.decamelize('')).to.equal('')
       expect(camel.decamelize(' ')).to.equal(' ')
@@ -116,21 +93,6 @@ describe('camel lib', function () {
       expect(camel.decamelize('fooABBR')).to.equal('foo_abbr')
       expect(camel.decamelize('ABBRFoo')).to.equal('abbr_foo')
       expect(camel.decamelize('fooBARBaz')).to.equal('foo_bar_baz')
-    })
-
-    it('should fail - wrong arguments types', async function () {
-      [
-        Number(1),
-        Boolean(true),
-        new Array(1),
-        new Date()
-      ].forEach(arg => {
-        try {
-          camel.decamelize(arg, arg)
-        } catch (err) {
-          expect(err.message).to.equal('The type of `value` and `separator` arguments should be a `string`')
-        }
-      })
     })
   })
 })

@@ -1,0 +1,8 @@
+{
+  "verbose": false,
+  "delay": 1000,
+  "watch": [
+    "src"
+  ],
+  "ext": "ts,json"
+}
