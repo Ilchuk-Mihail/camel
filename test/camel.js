@@ -9,10 +9,10 @@ describe('camel lib', function () {
   describe('camel.isCamelCase', function () {
     it('should succeed - all strings are valid', function () {
       [
-        'camelCase',
-        'camelCaseName',
-        'camel',
-        'camelABBR'
+        'f',
+        'fooBar',
+        'fooBarName',
+        'foo'
       ].every(str => expect(camel.isCamelCase(str)).to.equal(true))
     })
 
@@ -23,6 +23,8 @@ describe('camel lib', function () {
         'foo.bar',
         'FooBar',
         'FOO',
+        'fooF',
+        '1foo',
         'foo123',
         'foo bar name',
         '12345',
@@ -51,9 +53,10 @@ describe('camel lib', function () {
 
     it('should camelize all strings', function () {
       expect(camel.camelize('')).to.equal('')
-      expect(camel.camelize(' ')).to.equal(' ')
-      expect(camel.camelize('_')).to.equal('_')
+      expect(camel.camelize(' ')).to.equal('')
+      expect(camel.camelize('_')).to.equal('')
       expect(camel.camelize('foo')).to.equal('foo')
+      expect(camel.camelize('fooBAR')).to.equal('fooBar')
       expect(camel.camelize('fooBar')).to.equal('fooBar')
       expect(camel.camelize('foo.bar')).to.equal('fooBar')
       expect(camel.camelize('foo...bar')).to.equal('fooBar')
@@ -62,15 +65,28 @@ describe('camel lib', function () {
       expect(camel.camelize('foo-bar-baz')).to.equal('fooBarBaz')
       expect(camel.camelize('fooBar-baz')).to.equal('fooBarBaz')
       expect(camel.camelize('foo-bar_baz and foo_bar-baz')).to.equal('fooBarBazAndFooBarBaz')
-      expect(camel.camelize('123')).to.equal('123')
-      expect(camel.camelize('foo1_bar2')).to.equal('foo1Bar2')
-      expect(camel.camelize('foo1')).to.equal('foo1')
-      expect(camel.camelize('1Foo')).to.equal('1Foo')
+      expect(camel.camelize('123')).to.equal('')
+      expect(camel.camelize('foo1_bar2')).to.equal('fooBar')
+      expect(camel.camelize('foo1')).to.equal('foo')
+      expect(camel.camelize('1Foo')).to.equal('foo')
       expect(camel.camelize('A')).to.equal('a')
       expect(camel.camelize('FooBar')).to.equal('fooBar')
-      expect(camel.camelize('Foo ABBR')).to.equal('fooABBR')
-      expect(camel.camelize('foo Bar$')).to.equal('fooBar$')
-      expect(camel.camelize('foo-Bar#')).to.equal('fooBar#')
+      expect(camel.camelize('Foo ABBR')).to.equal('fooAbbr')
+      expect(camel.camelize('foo Bar$')).to.equal('fooBar')
+      expect(camel.camelize('foo-Bar#')).to.equal('fooBar')
+
+      // should keep numbers if preserveNumbers set
+      expect(camel.camelize('123', { preserveNumbers: true })).to.equal('123')
+      expect(camel.camelize('foo1_bar2', { preserveNumbers: true })).to.equal('foo1Bar2')
+      expect(camel.camelize('foo1', { preserveNumbers: true })).to.equal('foo1')
+      expect(camel.camelize('1Foo', { preserveNumbers: true })).to.equal('1Foo')
+    })
+
+    it('should camelize and keep numbers if preserveNumbers option set', function () {
+      expect(camel.camelize('123', { preserveNumbers: true })).to.equal('123')
+      expect(camel.camelize('foo1_bar2', { preserveNumbers: true })).to.equal('foo1Bar2')
+      expect(camel.camelize('foo1', { preserveNumbers: true })).to.equal('foo1')
+      expect(camel.camelize('1Foo', { preserveNumbers: true })).to.equal('1Foo')
     })
   })
 
@@ -81,12 +97,12 @@ describe('camel lib', function () {
       expect(camel.decamelize('_')).to.equal('_')
       expect(camel.decamelize('foo')).to.equal('foo')
       expect(camel.decamelize('fooBar')).to.equal('foo_bar')
-      expect(camel.decamelize('fooBar', '.')).to.equal('foo.bar')
-      expect(camel.decamelize('fooBar', '...')).to.equal('foo...bar')
+      expect(camel.decamelize('fooBar', { separator: '.' })).to.equal('foo.bar')
+      expect(camel.decamelize('fooBar', { separator: '...' })).to.equal('foo...bar')
       expect(camel.decamelize('fooBarName')).to.equal('foo_bar_name')
-      expect(camel.decamelize('fooBarBaz', ' ')).to.equal('foo bar baz')
-      expect(camel.decamelize('fooBarBaz', '')).to.equal('foobarbaz')
-      expect(camel.decamelize('fooBarBaz', '-')).to.equal('foo-bar-baz')
+      expect(camel.decamelize('fooBarBaz', { separator: ' ' })).to.equal('foo bar baz')
+      expect(camel.decamelize('fooBarBaz', { separator: '' })).to.equal('foobarbaz')
+      expect(camel.decamelize('fooBarBaz', { separator: '-' })).to.equal('foo-bar-baz')
       expect(camel.decamelize('FOO BAR BAZ')).to.equal('foo bar baz')
       expect(camel.decamelize('fooBarBazAndFooBarBaz')).to.equal('foo_bar_baz_and_foo_bar_baz')
       expect(camel.decamelize('foo-bar-baz')).to.equal('foo-bar-baz')
