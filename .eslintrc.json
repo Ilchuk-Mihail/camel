@@ -1,27 +1,40 @@
 {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es2021": true
-  },
-  "extends": [
-    "standard"
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "@typescript-eslint/eslint-plugin",
+    "jsdoc"
   ],
-  "parserOptions": {
-    "ecmaVersion": 12
+  "extends": [
+    "standard",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript"
+  ],
+  "root": true,
+  "env": {
+    "node": true,
+    "mocha": true
   },
-  "rules": {},
-  "overrides": [
-    {
-      "extends": [
-        "standard"
-      ],
-      "env": {
-        "mocha": true
-      },
-      "files": [
-        "test/*.js"
-      ]
-    }
-  ]
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/member-delimiter-style": [
+      "error", {
+        "multiline": {
+          "delimiter": "none",
+          "requireLast": true
+        }
+      }
+    ],
+    "no-console": "error",
+    "no-else-return": "error",
+    "no-lonely-if": "error",
+    "no-return-await": "error"
+  }
 }
