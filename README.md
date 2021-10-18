@@ -81,3 +81,11 @@ It saves any special characters and numbers unlike `camelize` function.
 | ----- | ----------- | ---- |
 | value | String value in camelCase | `string`
 | separator | Separator for the new decamelized string. Underscore by default| `string` |
+
+## Versions and Changelog
+See changelog.
+
+## License
+Licensed under the MIT License.
+
+## Credits
