@@ -22,7 +22,10 @@
   "keywords": [
     "camelcase",
     "case",
-    "camel-case"
+    "camel-case",
+    "camelize",
+    "decamelize",
+    "isCamelCase"
   ],
   "author": "Michael Ilchuk",
   "license": "MIT",

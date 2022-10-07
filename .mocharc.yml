@@ -1,7 +1,5 @@
-# async-only: true
 bail: true
 check-leaks: true
-# delay: true
 exit: true
 recursive: true
 sort: true
